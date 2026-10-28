@@ -889,13 +889,16 @@ window.App = App;
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && S.unlocked && tokenValid()) sync(false); });
   // a new version of the app (published from the computer's build): offer to reload
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').then(reg => {
-      reg.addEventListener('updatefound', () => {
-        const nw = reg.installing;
-        nw && nw.addEventListener('statechange', () => {
-          if (nw.state === 'installed' && navigator.serviceWorker.controller) toast('גרסה חדשה של האפליקציה', 'רענון', () => location.reload(), 30000);
-        });
-      });
+    const had = !!navigator.serviceWorker.controller;
+    let reloading = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {   // a new version took over
+      if (!had || reloading) return;
+      reloading = true;
+      if (document.querySelector('.sheet-bg')) toast('גרסה חדשה של האפליקציה', 'רענון', () => location.reload(), 60000);
+      else location.reload();
+    });
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(reg => {
+      reg.update().catch(() => {});
       setInterval(() => reg.update().catch(() => {}), 3600000);
     }).catch(() => {});
   }
