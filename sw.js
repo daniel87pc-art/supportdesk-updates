@@ -1,6 +1,6 @@
 // The app works without internet too: its files are kept on the phone. A new version (a different VERSION here,
 // written by publish.py) is installed in the background and the app offers to refresh.
-const VERSION = '3.50-4c6a1121';
+const VERSION = '3.51-4c6a1121';
 const CACHE = 'supportdesk-' + VERSION;
 const FILES = ['./', 'index.html', 'app.js', 'sdcrypto.js', 'config.js', 'manifest.json', 'icon-192.png', 'icon-512.png'];
 self.addEventListener('install', e => {
