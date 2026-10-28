@@ -1,0 +1,16 @@
+{
+  "name": "ניהול לקוחות",
+  "short_name": "לקוחות",
+  "description": "ניהול לקוחות · מוקד תמיכה - בטלפון",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F4F6F5",
+  "theme_color": "#0F7B5F",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
